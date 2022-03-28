@@ -33,6 +33,11 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 			header ('location:kadra.php?edit=');
 			exit;
 		}
+		else if ($row['STANOWISKO'] == 'KSIEGOWY')
+		{
+			header ('location:ksiegowosc.php');
+			exit;
+		}
 		else
 		{
 		header ('location:1.php');
