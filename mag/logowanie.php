@@ -25,6 +25,7 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 	
 		$_SESSION['login'] = $row['LOGIN'];
 		$_SESSION['stanowisko'] = $row['STANOWISKO'];
+		$_SESSION['idprac'] = $row['ID_PRACOWNIKA'];
 		
 		
 		echo '<b>Udało się zalogować! </b>';
@@ -38,6 +39,16 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 			header ('location:ksiegowosc.php');
 			exit;
 		}
+		else if ($row['STANOWISKO'] == 'Magazynier')
+		{
+			header ('location:uzupelnienia.php?stan=n');
+			exit;
+		}
+		else if ($row['STANOWISKO'] == 'Kompleter')
+		{
+			header ('location:kompletacja.php?stan=n');
+			exit;
+		}
 		else
 		{
 		header ('location:1.php');
@@ -45,7 +56,7 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 		}
 		
 	}
-	else header ('location:index.html?fail=1');
+	else header ('location:index.php?fail=1');
 	//else echo '<b>NIE udało się zalogować! </b>';
 	//echo $lo;
 	//echo $ha;

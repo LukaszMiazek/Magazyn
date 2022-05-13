@@ -22,8 +22,14 @@ if (mysqli_connect_errno()) {
 mysqli_query($conn, 'SET NAMES utf8');
 mysqli_query($conn, 'SET CHARACTER SET utf8');
 mysqli_query($conn, "SET collation_connection = utf8_polish_ci"); 
-
 ?>
+
+<form action="klient.php" method="post">
+
+	<input type="hidden" name="wlog"	required>
+	<button type="submit">Wyloguj się</button>
+
+</form>
 
 <form action="kadra-dodaj.php" method="post">
 <br>
@@ -46,8 +52,9 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 		Stanowisko:
 		<br>
 		<select name="stanowisko" required>
-		<option>MAGAZYNIER</option>
+		<option>Magazynier</option>
 		<option>KSIEGOWY</option>
+		<option>Kompleter</option>
 		</select>
 		<br>
 		<input type="submit" value="Dodaj pracownika">
@@ -120,6 +127,7 @@ $ed=0;
 		<br>
 		<form action="kadra-zmien.php" method="post">
 		<input type="hidden" name="idu" value="<?php echo $idu; ?>">
+		<button type="submit" name="upr" value="3">KOMPLETER</button>
 		<button type="submit" name="upr" value="1">MAGAZYNIER</button>
 		<button type="submit" name="upr" value="2">KSIEGOWY</button>
 		</form>

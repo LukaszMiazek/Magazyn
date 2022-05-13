@@ -1,0 +1,197 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: medium;
+}
+
+body{
+    background:#333333;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+            "nav nav nav"
+            ". potwierdzenie ."
+            ". uzupelniania ."
+            ". uzupelnienia ."
+            " . button_container .";
+}
+
+.nav{ 
+    grid-area: nav;
+    background: #E1E1E1;
+    color: black;
+    display: grid;
+    box-shadow: 0px 0px 5px -1px rgba(175, 175, 175, 1);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "wyloguj . . ."
+}
+
+.wyloguj{
+    grid-area: wyloguj;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+    font-weight: normal;
+}
+
+.wyloguj button{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid #FFFFFF;
+    background-color:#FFFFFF;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    text-align: center;
+    border-radius: 0.5rem;
+    color: black;
+    text-decoration: none;
+    margin: 1vh;
+}
+ 
+.wyloguj button:hover{
+border-color:#007aff;
+}
+
+.uzupelnienia{ 
+    grid-area: uzupelnienia;
+    background: #E1E1E1;
+    color: black;
+    justify-content: center;
+    display: flex;  
+    flex-wrap: nowrap;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-top: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    box-shadow: 0px 0px 5px -1px rgba(175, 175, 175, 1);
+}
+
+.uzupelnienia input{
+    width: 95%;
+    padding: 1vh;
+    padding-left: 1vh;
+    border: #333 2px;
+    border-radius: 0.5vh;
+    outline: none;
+    box-sizing: border-box;
+    border:0.15em solid #FFFFFF;
+}
+
+.uzupelnienia input:focus{
+    border-color:#007aff;
+}
+
+.potwierdzenie{ 
+    grid-area: potwierdzenie;
+    background: #E1E1E1;
+    color: black;
+    justify-content: center;
+    display: flex;  
+    flex-wrap: nowrap;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-top: 1vh;
+    box-shadow: 0px 0px 5px -1px rgba(175, 175, 175, 1);
+}
+
+.potwierdzenie a{
+    display:inline-block;
+    padding:1vh;
+    margin: auto;  
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    color:#000000;
+    background-color:#FFFFFF;
+    text-align:center;
+    width: 95%;
+    justify-content: center;
+    cursor: pointer; 
+    text-decoration: none;
+    font-size: medium;
+    border-radius: 0.5vh;
+    margin: 1vh;
+}
+
+.potwierdzenie a:hover{
+    border-color:#007aff;
+}
+
+.button_container{
+    grid-area: button_container;
+    background: #E1E1E1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 1vh;
+    box-shadow: 0px 0px 5px -1px rgba(175, 175, 175, 1);
+}
+
+.button_container button{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid #FFFFFF;
+    background-color:#FFFFFF;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    text-align: center;
+    border-radius: 0.5rem;
+    color: black;
+    text-decoration: none;
+    margin: 1vh;
+}
+
+.button_container button:hover{
+    border-color:#007aff;
+}
+
+.button_container a{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid #FFFFFF;
+    background-color:#FFFFFF;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    text-align: center;
+    border-radius: 0.5rem;
+    color: black;
+    text-decoration: none;
+    margin: 1vh;
+}
+
+.button_container a:hover{
+    border-color:#007aff;
+}
+
+@media only screen and (max-width: 1024px)
+{
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+                "nav"
+                "potwierdzenie"
+                "uzupelnienia"
+                "uzupelnienia"
+                "button_container";
+    }
+}
