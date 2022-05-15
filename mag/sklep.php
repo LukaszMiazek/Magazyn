@@ -17,10 +17,6 @@
 			<div class="nav">
 					<?php
 					session_start();
-					echo '<br>';
-					echo '<br>';
-					echo '<br>';
-					echo '<br>';
 
 					echo '<div class="wyloguj">';
 					echo 'Zalogowno jako '.$_SESSION['login'].' ';
