@@ -153,7 +153,8 @@ if (!isset ($_POST['konkom']) )
 						$kom->data = R::isoDateTime();
 						$kom->status = 1;
 						$id = R::store( $kom );
-
+						
+						$dane = R::findOne( 'towar', 'id = ?', [$lok->towar] );
 					?>
 					<div class="kompletacja">
 					sektor: <?php echo $t['sektor']; ?> <br>
@@ -164,10 +165,12 @@ if (!isset ($_POST['konkom']) )
 					
 					Do zebrania:
 					<?php echo $lok->ilosc - $lok->jest ?>
+					<br>
+					<br>
+					Nazwa: <?php echo $dane['nazwa']; ?> <br>
+					Opis: <?php echo $dane['opis']; ?> <br>
 					</div>
 					<br>
-					<br>
-					
 					<div class="button_container1">
 					<form action="" method="post">
 					<input type="hidden" name="mag" value="<?php echo $t['id']; ?>" required>
