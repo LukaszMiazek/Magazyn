@@ -10,14 +10,14 @@ body{
 
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr  1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-            "nav nav nav"
-            ". potwierdzenie ."
-            ". uzupelniania ."
-            ". uzupelnienia ."
-            " . button_container .";
+            "nav nav nav nav"
+            ". potwierdzenie potwierdzenie ."
+            ". szukaj uzupelniania ."
+            ". szukaj uzupelnienia ."
+            " . button_container button_container .";
 }
 
 .nav{ 
@@ -61,6 +61,21 @@ body{
  
 .wyloguj button:hover{
 border-color:#007aff;
+}
+
+.szukaj{
+    grid-area: szukaj;
+    background: #E1E1E1;
+    color: black;
+    justify-content: center;
+    display: flex;  
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-top: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 .uzupelnienia{ 
@@ -190,6 +205,7 @@ border-color:#007aff;
         grid-template-areas: 
                 "nav"
                 "potwierdzenie"
+                "szukaj"
                 "uzupelnienia"
                 "uzupelnienia"
                 "button_container";
