@@ -1,0 +1,206 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: medium;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: white;
+}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+            "nav nav nav nav"
+            ". . . ."
+            ". panel panel ."
+            ". . . ."
+            ". podsumowanie podsumowanie .";        
+}
+
+.nav{ 
+    grid-area: nav;
+    background: #323232;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "wyloguj . . sklep";
+}
+
+.sklep{
+    grid-area: sklep;
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.sklep a{
+    width: 40%;
+    padding: 1vh;
+    border:0.15em solid #333333;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    font-weight: normal;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    margin: 1vh;
+}
+
+.wyloguj{
+    grid-area: wyloguj;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+    font-weight: normal;
+}
+
+.wyloguj button{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid #333333;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    font-weight: normal;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    margin: 1vh;
+}
+
+.podsumowanie{
+    grid-area: podsumowanie;
+    background: #EFEFEF;
+    color: black;
+    display: grid;
+    overflow-y: scroll;
+    max-height: 400px;
+    margin-top: 2rem;
+    border: 1px solid grey;
+    
+}
+
+.panel{
+    grid-area: panel;
+    color: black;
+}
+
+.panel h1{
+    font-size: xx-large;
+    color: #333333;
+    letter-spacing: 1px;
+    font-weight: lighter;
+    border-bottom: 1px solid #151d2d;
+}
+.panel button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: larger;
+    margin-right: 1vh;
+}
+
+.podsumowanie h1{
+    font-size: x-large;
+    color: #333333;
+    letter-spacing: 1px;
+    font-weight: lighter;
+    border-bottom: 1px solid #151d2d;
+    
+}
+
+.suma{
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+    justify-content: space-between;  
+    align-items: center;
+}
+
+.suma input{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid #007aff;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    font-weight: normal;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #007aff;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.towar{
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+    justify-content: space-between;  
+    align-items: center;
+    border-bottom: 1px solid rgb(173, 173, 173);
+    border-top: 1px solid rgb(173, 173, 173);
+    margin-bottom: 1vh;
+}
+
+.towar h2{
+    text-transform: uppercase;
+    font-weight: lighter;
+    text-align: left;
+    font-size: large;
+}
+
+.historia{
+    border-bottom: 1px solid #333333;
+    font-weight: lighter;
+}
+
+@media only screen and (max-width: 768px)
+{
+    .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+                "nav"
+                "panel"
+                "podsumowanie";
+    }
+
+    .nav{
+        grid-area: nav;
+        background: #323232;
+        color: white;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "wyloguj sklep";
+    }
+    
+}
