@@ -250,9 +250,9 @@ else
 	echo '</div>';
 }
 ?>
+</div>
 
-
-<div class="szukaj">
+<div>
 <form action="" method="post">
 Szukaj towaru
 	<input type="text" name="skod" 
@@ -331,8 +331,6 @@ if(isset($_POST['skod']))
 echo '</div>';
 echo '</div>';
 ?>
-
-</div>
 </body>
 </html>
 
