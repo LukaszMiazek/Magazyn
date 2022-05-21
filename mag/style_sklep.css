@@ -7,7 +7,7 @@
 }
 
 body{
-    background: #f2f2f2;;
+    background: #f2f2f2;
 }
 
 
@@ -200,6 +200,10 @@ body{
 .panel i{
     color: #ff6b6b;
     font-size: larger;
+}
+
+.wyloguj i{
+    color: black;
 }
 
 .panel form{
@@ -535,6 +539,11 @@ tr td{
         height: 150px;
     }
 
+    .nav .logo{
+        justify-content: center;
+        margin-left: 0;
+    }
+
 }
 
 @media only screen and (max-width: 670px)
@@ -545,9 +554,6 @@ tr td{
         margin: 0;
     }
 
-    .logo{
-        margin: 0;
-    }
     .container{
         grid-template-columns: 1fr;
         grid-template-areas: 
@@ -593,6 +599,11 @@ tr td{
 
     .nav .panel{
         justify-content: center
+    }
+
+    .nav .logo{
+        justify-content: center;
+        margin-left: 0;
     }
     
 }
