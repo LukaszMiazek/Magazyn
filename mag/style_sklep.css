@@ -1,5 +1,5 @@
 *{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     font-size: medium;
     margin: 0;
@@ -7,56 +7,61 @@
 }
 
 body{
-    background: #c5d1eb;
+    background: #f2f2f2;;
 }
 
 
 .container{
     display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    grid-gap: 2px;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: repeat(4, auto) 1fr;
     grid-template-areas: 
-            "nav nav nav"
-            "search tag tag"
-            ". tabela tabela"
-            ". tabela tabela"
-            "produkt tabela tabela";
+            "nav nav nav nav nav"
+            "tag search search produkt produkt"
+            "tag tabela tabela produkt produkt"
+            "tag  tabela tabela produkt produkt"
+            "tag  tabela tabela produkt produkt";
 }
+
 .tabela{ 
     grid-area: tabela;
     padding-top: 1vh;
-    margin: 2vh;
+    background-color: white;
 }
 .produkt{ 
-    position: sticky;
-    top: 0; 
-    bottom: 0;
     grid-area: produkt;
     background: white;
-    border-top-right-radius: 1rem;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    width: 100%;
+    min-height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr ;
     grid-template-rows: auto;
     grid-template-areas: 
-            "obraz nazwa"
-            "obraz opis"
-            "obraz cena"
-            "obraz ilosc"
-            "obraz kup";
+            "obraz "
+            "nazwa"
+            "opis "
+            "cena "
+            "ilosc"
+            "kup";
 }
+
+.produkt .produkt_panel{
+    margin: 1vh;
+}
+
 .nazwa{
     grid-area: nazwa;
-    font-weight: lighter;
+    font-weight: bold;
     font-size: xx-large;
 }
 .nazwa h1{
     font-weight: 500;
-    color: #939CD4;
+    color: #47a358;
     letter-spacing: 1px;
-    margin-top: 1vh;
-    
 }
 
 .obraz{
@@ -69,13 +74,18 @@ body{
 .opis{
     grid-area: opis;
     font-weight: lighter;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     display: flex;
+    color: grey;
 }
 .cena{
     grid-area: cena;
-    font-size: large;
+    font-size: x-large;
     display: flex;
     align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .ilosc{
     grid-area: ilosc;
@@ -85,22 +95,18 @@ body{
     align-items: center;
 }
 .kup{
-    grid-area: kup;
-    justify-content: center;
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    text-align: center;
-    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .kup form{
     display: flex;
     align-items: center;
     width: 100%;
     text-align: center;
+    justify-content: space-between;
 }
 .kup .kup_b button{
-    width: 80%;
+    width: 100%;
     padding: 1vh;
     border:0.15em solid #333333;
     outline: none;
@@ -108,7 +114,7 @@ body{
     cursor: pointer; 
     -webkit-appearance: none;
     font-weight: 300;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background-color: #333333;
     color: white;
 }
@@ -122,7 +128,7 @@ body{
 }
 
 .kup .kup_b{
-    width: 90%;
+    width: 80%;
     align-items: center;
     justify-content: center;
     display: block;
@@ -138,7 +144,7 @@ body{
     cursor: pointer; 
     -webkit-appearance: none;
     font-weight: 300;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background-color: white;
     color: #333333;
 }
@@ -146,34 +152,75 @@ body{
 
 .nav{ 
     grid-area: nav;
-    background: #151d2d;
+    background: white;
     color: white;
+  
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-        "wyloguj . . koszyk"
+        "logo . panel panel"
 }
 
-.koszyk{
-    grid-area: koszyk;
+.logo{
+    grid-area: logo;
+    align-items: center;
+    margin-left: 4vh;
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+    color: black;
+}
+
+.logo i{
+    font-size: xx-large;
+    font-weight: bolder;
+    color: #47a358;
+}
+
+.logo h2{
+    font-size: x-large;
+    margin-left: 1vh;
+    font-weight: bold;
+    border-bottom: 2px solid #47a358;
+}
+
+.panel{
+    grid-area: panel;
     align-items: center;
     justify-content: flex-end;
     display: flex;
     float: left;
     text-align: left;
     width: 100%;
+    color: black;
 }
 
-.koszyk a{
-    width: 40%;
-    padding: 1vh;
-    border:0.15em solid #333333;
+.panel i{
+    color: #ff6b6b;
+    font-size: larger;
+}
+
+.panel form{
+    display: flex;
+    justify-content: center;
+}
+
+.panel .uzytkownik{
+    display: flex;
+    font-size: large;
+}
+
+.panel a{
+    width: 22%;
+    border:0.15em solid white;
     outline: none;
     justify-content: center;
     cursor: pointer; 
     -webkit-appearance: none;
-    font-weight: normal;
+    font-weight: bold;
+    font-size: larger;
     text-align: center;
     border-radius: 0.5rem;
     background-color: white;
@@ -182,26 +229,16 @@ body{
     margin: 1vh;
 }
 
-.wyloguj{
-    grid-area: wyloguj;
-    align-items: center;
-    justify-content: flex-start;
-    display: flex;
-    float: left;
-    text-align: left;
-    width: 100%;
-    font-weight: normal;
-}
 
-.wyloguj button{
+.panel button{
     width: 100%;
-    padding: 1vh;
-    border:0.15em solid #333333;
+    border:0.15em solid white;
     outline: none;
     justify-content: center;
     cursor: pointer; 
     -webkit-appearance: none;
-    font-weight: normal;
+    font-weight: bold;
+    font-size: larger;
     text-align: center;
     border-radius: 0.5rem;
     background-color: white;
@@ -213,25 +250,39 @@ body{
 
 .tag{
     grid-area: tag;
-    background: #E8EAF7;
-    border-bottom-left-radius: 1rem;
-    padding: 1vh;
+    background: white;
     display: flex;  
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+}
+
+
+.tag h1{
+    font-size: x-large;
+    color: black;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin: 1vh;
+}
+
+.tag .kategorie{
+    width: 100%;
+    display: flex;  
     flex-wrap: wrap;
-    box-sizing: border-box;
+    align-content: flex-start;
+    justify-content: center;
 }
 
 .search{
     grid-area: search;
-    background: #c5d1eb;
+    background: white;
     justify-content: center;
     display: flex;  
     flex-wrap: nowrap;
     width: 100%;
     text-align: center;
     align-items: center;
+    
 }
 
 table{
@@ -248,7 +299,6 @@ table{
     margin: 1vh;
     align-items: center;
     width: 100%;
-    
 }
 
 tr{
@@ -259,7 +309,8 @@ tr{
     justify-content: center;
     text-align: center;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 2rem;
+    border: 2px solid #f2f2f2;
 }
 
 tr td{
@@ -272,6 +323,7 @@ tr td{
     align-items: center;
     width: 100%;
     text-align: center;
+    margin: 1vh;
 }
 
 .search .col_big{
@@ -293,10 +345,13 @@ tr td{
     font-weight: 600;
     font-size: medium;
     border-radius: 3rem;
+    background-color: #F8F8F8;
 }
 
 .search form .col_big input::placeholder{
     font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: large;
 }
 
 .search .col{
@@ -317,32 +372,31 @@ tr td{
     font-weight: 600;
     font-size: large;
     border-radius: 3rem;
-    background-color: white;
+    background-color: #F8F8F8;
     color: #333333;
 }
 
 .tag .guzik2{
     display:inline-block;
-    padding:1vh;
-    border: 2px solid #A7B2DE;
+    padding: 0.75vh;
+    border: 2px solid #57c96c;
     box-sizing: border-box;
     color:white;
-    background-color:#A7B2DE;
+    background-color:#57c96c;
     text-align:center;
     width: auto;
     justify-content: center;
     cursor: pointer; 
     text-decoration: none;
-    font-size: medium;
+    font-size: lighter;
     border-radius: 3rem;
-    letter-spacing: 1px;
-    font-weight: lighter;
+    font-weight: normal;
     margin: 0.2vh;
 }
 
 .tag .guzik2:nth-of-type(odd){
-    border: 2px solid #939CD4;
-    background-color:#939CD4;
+    border: 2px solid #47a358;
+    background-color:#47a358;
 }
 
 .tabela .produktinfo{
@@ -355,22 +409,34 @@ tr td{
 }
 .tabela .produktnaz{
     text-align: left;
-    font-weight: lighter;
+    font-weight: bold;
+    font-size: larger;
 }
 
 .tabela .produktcena{
     text-align: right;
+    display: flex;
     font-size: large;
-    letter-spacing: 1px;
+    font-weight: lighter;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
     color: black;
 }
 
-.tabela h1{
-    font-size: xx-large;
-    color: #333333;
-    letter-spacing: 1px;
+.tabela .produktcena h2{
+    color: grey;
     font-weight: lighter;
-    border-bottom: 1px solid #151d2d;
+}
+
+.tabela h1{
+    font-size: xxx-large;
+    color: black;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin: 1vh;
 }
 
 
@@ -381,13 +447,12 @@ tr td{
     .container{
         display: grid;
         grid-template-columns: 1fr  1fr 1fr 1fr 1fr;
-        grid-template-rows: auto;
         grid-template-areas: 
                 "nav nav nav nav nav"
-                "search search tag tag tag"
-                ". . tabela tabela tabela"
-                ". . tabela tabela tabela"
-                "produkt produkt tabela  tabela tabela";
+                "tag search search search search"
+                "tag tabela tabela tabela produkt"
+                "tag tabela tabela tabela produkt"
+                "tag tabela tabela  tabela produkt";
     }
 
     .tabela tbody{
@@ -406,12 +471,11 @@ tr td{
     .container{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
         grid-template-areas: 
                 "nav nav"
-                "search tag"
-                ".  tabela"
-                ".  tabela"
+                "tag search"
+                "produkt  tabela"
+                "produkt  tabela"
                 "produkt tabela";
     }
 
@@ -430,7 +494,6 @@ tr td{
 
     .container{
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
         grid-template-areas: 
         "nav"
         "tag"
@@ -449,14 +512,20 @@ tr td{
     }
     .nav{ 
         grid-area: nav;
-        background: #151d2d;
-        color: white;
+        background: white;
+        color: black;
         display: grid;
-        grid-template-columns: 1fr 0.1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         grid-template-areas: 
-            "wyloguj . koszyk"
+            "logo logo"
+            "panel panel";
     }
+
+    .nav .panel{
+        justify-content: center
+    }
+
     img{
         width: 100px;
         height: 100px;
@@ -465,17 +534,22 @@ tr td{
         width: 150px;
         height: 150px;
     }
-    .search{
-        margin: 1vh;
-    }
+
 }
 
 @media only screen and (max-width: 670px)
 {
+    *{
+        font-size: small;
+        font-weight: 400;
+        margin: 0;
+    }
 
+    .logo{
+        margin: 0;
+    }
     .container{
         grid-template-columns: 1fr;
-        grid-template-rows: auto;
         grid-template-areas: 
         "nav"
         "tag"
@@ -483,6 +557,7 @@ tr td{
         "produkt"
         "tabela";
     }
+
     .tabela tbody{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -491,9 +566,7 @@ tr td{
         width: 100%;
         
     }
-    .search{
-        margin: 1vh;
-    }
+
     img{
         width: 100px;
         height: 100px;
@@ -502,18 +575,24 @@ tr td{
         width: 150px;
         height: 150px;
     }
-    .produkt{
-        height: 90%;
-    }
     .nav{ 
         grid-area: nav;
-        background: #151d2d;
-        color: white;
+        background: white;
+        color: black;
         display: grid;
-        grid-template-columns: 1fr 0.1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         grid-template-areas: 
-            "wyloguj . koszyk"
+            "logo logo"
+            "panel panel";
+    }
+
+    .tabela h1{
+        font-size: x-large;
+    }
+
+    .nav .panel{
+        justify-content: center
     }
     
 }
