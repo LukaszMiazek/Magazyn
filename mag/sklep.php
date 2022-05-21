@@ -24,12 +24,15 @@
 					echo '</div>';
 
 					echo '<div class="panel">';
+					echo 'Zalogowno jako '.$_SESSION['login'];
 						?>
 						
 						<form action="klient.php" method="post">
 
 							<input type="hidden" name="wlog"	required>
+							<div class="wyloguj">
 							<button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Wyloguj </button>
+							</div>
 
 						</form>
 					
