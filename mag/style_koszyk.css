@@ -1,41 +1,85 @@
 *{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
     font-size: medium;
     margin: 0;
     padding: 0;
 }
 
-body{
-    background: white;
-}
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #f2f2f2 #ffffff;
+  }
 
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
+
+body{
+    background: #f2f2f2;
+}
 
 .container{
     display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    grid-gap: 6px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: repeat(4, auto) 1fr;
     grid-template-areas: 
             "nav nav nav nav"
-            ". . . ."
             ". panel panel ."
-            ". . . ."
             ". podsumowanie podsumowanie .";        
 }
 
 .nav{ 
     grid-area: nav;
-    background: #323232;
-    color: white;
+    background: white;
+    color: black;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-        "wyloguj . . sklep";
+        "logo . nav_panel nav_panel"
 }
 
-.sklep{
-    grid-area: sklep;
+.logo{
+    grid-area: logo;
+    align-items: center;
+    margin-left: 4vh;
+    display: flex;
+    float: left;
+    text-align: left;
+    width: 100%;
+    color: black;
+}
+
+.logo i{
+    font-size: xx-large;
+    font-weight: bolder;
+    color: #ff6b6b;
+}
+
+.logo h2{
+    font-size: x-large;
+    margin-left: 1vh;
+    font-weight: bold;
+    border-bottom: 2px solid #ff6b6b;
+}
+
+.nav_panel{
+    grid-area: nav_panel;
     align-items: center;
     justify-content: flex-end;
     display: flex;
@@ -44,15 +88,15 @@ body{
     width: 100%;
 }
 
-.sklep a{
-    width: 40%;
-    padding: 1vh;
-    border:0.15em solid #333333;
+.nav_panel a{
+    width: 22%;
+    border:0.15em solid white;
     outline: none;
     justify-content: center;
     cursor: pointer; 
     -webkit-appearance: none;
-    font-weight: normal;
+    font-weight: bold;
+    font-size: larger;
     text-align: center;
     border-radius: 0.5rem;
     background-color: white;
@@ -61,57 +105,57 @@ body{
     margin: 1vh;
 }
 
-.wyloguj{
-    grid-area: wyloguj;
-    align-items: center;
-    justify-content: flex-start;
-    display: flex;
-    float: left;
-    text-align: left;
-    width: 100%;
-    font-weight: normal;
+.nav_panel i{
+    color: #47a358;
+    font-size: larger;
 }
 
-.wyloguj button{
+.nav_panel button{
     width: 100%;
-    padding: 1vh;
-    border:0.15em solid #333333;
+    border:0.15em solid white;
     outline: none;
     justify-content: center;
     cursor: pointer; 
     -webkit-appearance: none;
-    font-weight: normal;
+    font-weight: bold;
+    font-size: larger;
     text-align: center;
     border-radius: 0.5rem;
     background-color: white;
     color: black;
     text-decoration: none;
     margin: 1vh;
+}
+
+.wyloguj i{
+    color: black;
 }
 
 .podsumowanie{
     grid-area: podsumowanie;
-    background: #EFEFEF;
+    background: white;
     color: black;
     display: grid;
     overflow-y: scroll;
     max-height: 400px;
-    margin-top: 2rem;
-    border: 1px solid grey;
-    
+    border-radius: 1rem;
 }
 
 .panel{
     grid-area: panel;
     color: black;
+    background-color: white;
+    padding: 1vh;
+    border-radius: 1rem;
 }
 
 .panel h1{
     font-size: xx-large;
-    color: #333333;
+    color: black;
     letter-spacing: 1px;
-    font-weight: lighter;
-    border-bottom: 1px solid #151d2d;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin: 1vh;
 }
 .panel button{
     border: none;
@@ -123,10 +167,11 @@ body{
 
 .podsumowanie h1{
     font-size: x-large;
-    color: #333333;
+    color: black;
     letter-spacing: 1px;
-    font-weight: lighter;
-    border-bottom: 1px solid #151d2d;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin: 1vh;
     
 }
 
@@ -139,18 +184,29 @@ body{
     align-items: center;
 }
 
+.suma .suma_suma{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.suma h2{
+    color: grey;
+    font-weight: lighter;
+}
+
+
 .suma input{
     width: 100%;
     padding: 1vh;
-    border:0.15em solid #007aff;
+    border:0.15em solid #ff6b6b;
     outline: none;
     justify-content: center;
     cursor: pointer; 
     -webkit-appearance: none;
     font-weight: normal;
     text-align: center;
-    border-radius: 0.5rem;
-    background-color: #007aff;
+    border-radius: 1rem;
+    background-color: #ff6b6b;
     color: white;
     text-decoration: none;
     text-transform: uppercase;
@@ -178,10 +234,17 @@ body{
 .historia{
     border-bottom: 1px solid #333333;
     font-weight: lighter;
+    padding: 1vh;
 }
 
 @media only screen and (max-width: 768px)
 {
+    *{
+        font-size: small;
+        font-weight: 400;
+        margin: 0;
+    }
+
     .container{
         display: grid;
         grid-template-columns: 1fr;
@@ -194,13 +257,22 @@ body{
 
     .nav{
         grid-area: nav;
-        background: #323232;
-        color: white;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         grid-template-areas: 
-            "wyloguj sklep";
+            "logo logo"
+            "nav_panel nav_panel";
+
+    }
+
+    .nav .nav_panel{
+        justify-content: center
+    }
+
+    .nav .logo{
+        justify-content: center;
+        margin-left: 0;
     }
     
 }
