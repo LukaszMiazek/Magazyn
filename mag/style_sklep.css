@@ -389,7 +389,7 @@ tr td{
     cursor: pointer; 
     text-decoration: none;
     font-size: lighter;
-    border-radius: 3rem;
+    border-radius: 1rem;
     font-weight: normal;
     margin: 0.2vh;
 }
