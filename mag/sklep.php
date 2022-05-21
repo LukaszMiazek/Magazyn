@@ -7,8 +7,8 @@
 	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/> 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -18,48 +18,52 @@
 					<?php
 					session_start();
 
-					echo '<div class="wyloguj">';
-					echo 'Zalogowno jako '.$_SESSION['login'].' ';
+					echo '<div class="logo">';
+					echo '<i class="fa-solid fa-coins"></i>';
+					echo '<h2>magazyn/sklep</h2>';
+					echo '</div>';
+
+					echo '<div class="panel">';
+						?>
+						
+						<form action="klient.php" method="post">
+
+							<input type="hidden" name="wlog"	required>
+							<button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Wyloguj </button>
+
+						</form>
 					
 
-				
 
+						<?php
+							
+							echo '<a href="koszyk.php"><i class="fa-solid fa-cart-shopping"></i> Koszyk</a>';
+							
 
-
-					?>
+							require 'rb-mysql.php';
+							R::setup( 'mysql:host=localhost;dbname=magazyn','root', '' );
+					echo'</div>';
 					
-					<form action="klient.php" method="post">
-
-						<input type="hidden" name="wlog"	required>
-						<button type="submit">Wyloguj się</button>
-
-					</form>
-					</div>
-
-
-					<?php
-						echo '<div class="koszyk">';
-						echo '<a href="koszyk.php"><i class="fa-solid fa-cart-shopping"></i> Koszyk</a>';
-						echo '</div>';
-					
-
-						require 'rb-mysql.php';
-						R::setup( 'mysql:host=localhost;dbname=magazyn','root', '' );
 			echo'</div>';
 					
 			echo'<div class="tag">';
-				//echo '<a class="guzik2" href="sklep.php">Wszystko </a>';
-				$kt = R::getAll( 'SELECT * FROM kategoria' );
-				foreach ($kt as $kat)
-				{
-					echo '<a class="guzik2" href="sklep.php?kat=';
-					echo $kat['id'];
-					echo '">';
-					echo $kat['nazwa'];
-					echo ' </a>';
-				}
-				?>
+				echo'<h1>Kategorie</h1>';
+				echo'<div class="kategorie">';
+					//echo '<a class="guzik2" href="sklep.php">Wszystko </a>';
+					$kt = R::getAll( 'SELECT * FROM kategoria' );
+					foreach ($kt as $kat)
+					{
+						echo '<a class="guzik2" href="sklep.php?kat=';
+						echo $kat['id'];
+						echo '">';
+						echo $kat['nazwa'];
+						echo ' </a>';
+					}
+					?>
+				</div>
 			</div>
+
+		
 			<div class="search">
 				<form action="sklep.php" method="get">
 				<?php
@@ -80,61 +84,63 @@
 			</div>
 
 		<?php
-
+		
 		echo '<div class="tabela">';
 		echo '<h1>Produkty</h1>';
-		echo '<table>';
-		if (isset ($_GET['kat'])) $wkat= '%'.$_GET['kat'].'%';
-		else $wkat='%%';
-		if (isset ($_GET['naz'])) $wnaz= '%'.$_GET['naz'].'%';
-		else $wnaz='%%';
+			echo '<table>';
+			if (isset ($_GET['kat'])) $wkat= '%'.$_GET['kat'].'%';
+			else $wkat='%%';
+			if (isset ($_GET['naz'])) $wnaz= '%'.$_GET['naz'].'%';
+			else $wnaz='%%';
 
-		if (!isset ($_GET['kat']) && !isset ($_GET['naz'])) 
-		{
-			$wkat='%/@%';
-			$wnaz='%/@%';
-		}
+			if (!isset ($_GET['kat']) && !isset ($_GET['naz'])) 
+			{
+				$wkat='%/@%';
+				$wnaz='%/@%';
+			}
 
-		$tw = R::find('towar', ' kategoria LIKE ? AND nazwa like ?', [$wkat,$wnaz] );
-		foreach ($tw as $towar){
-			echo '<tr>';
-			echo '<td>';
-			//echo $towar->nazwa.' ';
-			echo '<a href="sklep.php?tow=';
-			echo $towar->id;
-			if (isset ($_GET['kat']))
-			{
-				echo '&kat=';
-				echo $_GET['kat'];
+			$tw = R::find('towar', ' kategoria LIKE ? AND nazwa like ?', [$wkat,$wnaz] );
+			foreach ($tw as $towar){
+				echo '<tr>';
+				echo '<td>';
+				//echo $towar->nazwa.' ';
+				echo '<a href="sklep.php?tow=';
+				echo $towar->id;
+				if (isset ($_GET['kat']))
+				{
+					echo '&kat=';
+					echo $_GET['kat'];
+				}
+				if (isset ($_GET['naz']))
+				{
+					echo '&naz=';
+					echo $_GET['naz'];
+				}
+				echo '">';
+				
+				
+				echo '<img src = "Zdjecia/';
+				echo $towar->id; 
+				echo '.png " width="150" height="150" alt=" " ></a>'; //.jpg !
+				echo '<br>';
+				
+						echo '<div class="produktinfo">';
+					
+										echo '<div class="produktnaz">';
+										echo $towar->nazwa;
+										echo'</div>';
+													echo '<div class="produktcena">';
+													echo '<h2>Cena</h2>';
+													echo ' '.$towar->cena; echo ' zł';
+													echo'</div>';
+						echo '</div>';
+				echo '</td>';
+				echo '</tr>';
 			}
-			if (isset ($_GET['naz']))
-			{
-				echo '&naz=';
-				echo $_GET['naz'];
-			}
-			echo '">';
-			
-			
-			echo '<img src = "Zdjecia/';
-			echo $towar->id; 
-			echo '.png " width="150" height="150" alt=" " ></a>'; //.jpg !
-			echo '<br>';
-			
-			echo '<div class="produktinfo">';
-		
-			echo '<div class="produktnaz">';
-			echo $towar->nazwa;
-			echo'</div>';
-			echo '<div class="produktcena">';
-			echo ' '.$towar->cena; echo ' zł';
-			echo'</div>';
-			echo '</div>';
-			echo '</td>';
-			echo '</tr>';
-		}
-		echo '</table>';
+			echo '</table>';
 		echo '</div>';
 		echo '<br><br>';
+		
 
 		if (isset ($_POST['tid']))
 		{
@@ -165,28 +171,27 @@
 			$towar = R::findONE('towar', 'id=?', [$id]);
 			
 			echo '<div class="produkt">';
-			echo '<div class="nazwa">';
-			echo '<h1>Produkt</h1>';
-			echo $towar->nazwa;
-			echo '</div>';
-			
 			echo '<div class="obraz">';
 			echo '<img src = "Zdjecia/';
 			echo $id; 
-			echo '.png " width="200" height="200" alt=" " ></a>';
+			echo '.png " width="375" height="375" alt=" " ></a>';
 			echo '</div>';
+			echo '<div class="produkt_panel">';
+				echo '<div class="nazwa">';
+				echo '<h1>Produkt</h1>';
+				echo $towar->nazwa;
+				echo '</div>';
+				
 
-			echo '<div class="opis">';
-			echo $towar->opis;
-			echo '</div>';
-			
-			echo '<div class="cena">';
-			echo $towar->cena;
-			echo ' zł';
-			echo '</div>';
+				echo '<div class="opis">';
+				echo $towar->opis;
+				echo '</div>';
+				
+				echo '<div class="cena">';
+				echo $towar->cena;
+				echo ' zł';
+				echo '</div>';
 
-
-			echo '<br>';
 			
 			$sum=0;
 			$mg = R::find('magazyn', ' id_tow = ?', [$id] );
@@ -221,6 +226,7 @@
 				echo 'Brak Produktu w magazynie';
 				echo '</div>';
 			}
+			echo '</div>'; //do produkt_panel
 			echo '</div>';
 		}
 		?>
