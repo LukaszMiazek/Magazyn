@@ -7,30 +7,43 @@
 	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/> 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
  
 </head>
 <body>
 <div class="container">
-<div class="nav">
-<?php
-session_start();
-echo '<div class="wyloguj">';
-echo 'Zalogowno jako '.$_SESSION['login'];
-?>
-<form action="klient.php" method="post">
+	<div class="nav">
+		<?php
+			echo '<div class="logo">';
+				echo '<i class="fa-solid fa-coins"></i>';
+				echo '<h2>magazyn/koszyk</h2>';
+			echo '</div>';
+		session_start();
+			echo '<div class="nav_panel">';
 
-	<input type="hidden" name="wlog"	required>
-	<button type="submit">Wyloguj się</button>
+				echo 'Zalogowno jako '.$_SESSION['login'];
+				?>
+					<form action="klient.php" method="post">
 
-</form>
-</div>
-<?php
-echo '<div class="sklep">';
-echo '<a href="Sklep.php"><i class="fa-solid fa-shop"></i> Sklep</a>';
-echo '</div>';
-echo '</div>';
+						<input type="hidden" name="wlog"	required>
+						<div class="wyloguj">
+							<button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Wyloguj </button>
+						</div>
+					</form>
+			
+					<?php
+							
+				echo '<a href="Sklep.php"><i class="fa-solid fa-shop"></i> Sklep</a>';
+			echo '</div>';
+	echo '</div>';
+
+
+
+
+
+
+
 
 require 'rb-mysql.php';
 R::setup( 'mysql:host=localhost;dbname=magazyn','root', '' );
@@ -108,9 +121,11 @@ else
 	}
 	echo '<br>';
 	echo '<div class="suma">';
-	echo 'Suma ';
+	echo '<div class="suma_suma">';
+	echo '<h2>Suma </h2>';
 	echo number_format($suma, 2);
 	echo ' zł';
+	echo '</div>';
 	
 	?>
 		<form action="" method="post">
@@ -136,7 +151,7 @@ if (empty($zaakt))
 }
 else
 {
-	echo '<h1>Twoje zamówienia</h1>';
+	echo '<h1>Historia zamówień</h1>';
 	
 	foreach ($zaakt as $zam)
 	{
