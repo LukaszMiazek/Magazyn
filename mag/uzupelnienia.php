@@ -204,13 +204,13 @@ else
 	<?php if( !isset($_POST['sektor']) ) { ?>
 	
 			Sektor
-			<input type="text" maxlength="1" name="sektor" required>
+			<input type="text" maxlength="1" name="sektor" id="s" required>
 			<br>Alejka
-			<input type="number" name="alejka" required>
+			<input type="number" name="alejka" id="a" required>
 			<br>Półka
-			<input type="number" name="polka"  required>
+			<input type="number" name="polka"  id="p" required>
 			<br>Box
-			<input type="text" maxlength="1" name="box" required>
+			<input type="text" maxlength="1" name="box" id="b" required>
 			<br>Kod Produktu
 			<input type="text" name="idp" required>
 			<br>
@@ -220,13 +220,13 @@ else
 	{
 	?>	
 		Sektor
-			<input type="text" maxlength="1" name="sektor" value = <?php echo $_POST['sektor'] ?> required>
+			<input type="text" maxlength="1" name="sektor" value = <?php echo $_POST['sektor'] ?> id="s" required>
 			<br>Alejka
-			<input type="number" name="alejka" value = <?php echo $_POST['alejka'] ?> required>
+			<input type="number" name="alejka" value = <?php echo $_POST['alejka'] ?> id="a" required>
 			<br>Półka
-			<input type="number" name="polka"  value = <?php echo $_POST['polka'] ?> required>
+			<input type="number" name="polka"  value = <?php echo $_POST['polka'] ?> id="p" required>
 			<br>Box
-			<input type="text" maxlength="1" name="box" value = <?php echo $_POST['box'] ?> required>
+			<input type="text" maxlength="1" name="box" value = <?php echo $_POST['box'] ?> id="b" required>
 			<br>Kod Produktu
 			<input type="text" name="idp" value= <?php echo $_POST['idp'] ?> required>
 			<br>
@@ -250,9 +250,9 @@ else
 	echo '</div>';
 }
 ?>
-</div>
 
-<div>
+
+<div class="szukaj">
 <form action="" method="post">
 Szukaj towaru
 	<input type="text" name="skod" 
@@ -279,6 +279,19 @@ if(isset($_POST['skod']))
 	}
 	else
 	{
+		?>
+		<script>
+
+		function wpisz (s,a,p,b){
+		document.getElementById('s').value = s;
+		document.getElementById('a').value = a;
+		document.getElementById('p').value = p;
+		document.getElementById('b').value = b;
+		}
+
+		</script>
+		<?php
+		
 		$id = $towar['id'];
 		echo '<table>';
 		$mg = R::find('magazyn', ' id_tow = ?', [$id] );
@@ -320,8 +333,11 @@ if(isset($_POST['skod']))
 				echo '<td>';
 				echo $mag->ilosc.' ';
 				echo '</td>';
-				$idm=$mag->id;
 				echo '<td>';
+				$idm=$mag->id;
+				echo '</td>';
+				echo '<td>';
+				?><button type="button" onClick="wpisz('<?php echo $mag->sektor ?>',<?php echo $mag->alejka ?>,<?php echo $mag->polka ?>,'<?php echo $mag->box ?>')">Wpisz</button><?php
 				echo '</td>';
 				echo '</tr>';
 		}
@@ -331,6 +347,8 @@ if(isset($_POST['skod']))
 echo '</div>';
 echo '</div>';
 ?>
+
+</div>
 </body>
 </html>
 
