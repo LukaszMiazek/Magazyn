@@ -143,6 +143,7 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 			<button type="submit" name="upr" value="3">KOMPLETER</button>
 			<button type="submit" name="upr" value="1">MAGAZYNIER</button>
 			<button type="submit" name="upr" value="2">KSIEGOWY</button>
+			<button type="submit" name="upr" value="4">PAKOWACZ</button>
 			</form>
 			<br>
 			<form action="kadra-zmien.php" method="post">

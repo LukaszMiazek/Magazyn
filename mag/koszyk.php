@@ -50,10 +50,25 @@ R::setup( 'mysql:host=localhost;dbname=magazyn','root', '' );
 
 if (isset ($_POST['zloz']))
 {
+	if ( !preg_match('/^[0-9]{2}-?[0-9]{3}$/Du', $_POST['zloz']) ) 
+	{
+		?>
+		<script>
+			alert("Niepoprawny kod pocztowy")
+		</script>
+		<?php
+	}
+	else
+	{
 	$t = R::load( 'zamowienie', $_POST['zloz']);
 	$t->status = 1;
+	$t->miejscowosc = $_POST['mie'];
+	$t->kod_pocztowy = $_POST['kod'];
+	$t->ulica= $_POST['ul'];
+	$t->numer_domu = $_POST['nr'];
 	$t->data = date("Y-m-d");
 	R::store( $t ); 
+	}
 }
 
 if (isset ($_POST['zid']))
@@ -129,6 +144,15 @@ else
 	
 	?>
 		<form action="" method="post">
+		<br>Miejscowość
+		<input type="text" name="mie" required>
+		<br>Kod Pocztowy
+		<input type="text" name="kod" required>
+		<br>Ulica
+		<input type="text" name="ul" required>
+		<br>Numer domu
+		<input type="text" name="nr" required>
+		<br><br>
 		<input type="hidden" name="zloz" value="<?php echo $zamis->id; ?>" required>
 		<input type="submit" value="Złóż zamówienie">
 		</form>
@@ -163,6 +187,17 @@ else
 		echo 'Data złożenia zamówienia: ';
 		echo $zam->data;
 		echo '<br>';
+		echo 'Miejscowość: ';
+		echo $zam->miejscowosc;
+		echo ' (';
+		echo $zam->kod_pocztowy;
+		echo ')';
+		echo '<br>';
+		echo 'Addes: ';
+		echo $zam->ulica;
+		echo ' ';
+		echo $zam->numer_domu;
+		echo '<br>';
 		echo 'Status zamówienia: ';
 		
 		switch ($zam->status) {
@@ -173,7 +208,11 @@ else
     case 2:
         echo "W trakcie realizacji";
 	case 3:
-        echo "Zakończone";
+        echo "Skompletowane";
+	case 4:
+        echo "W trakcie realizacji";
+	case 5:
+        echo "Wysłane";
 }
 	echo '<br>';
 	echo '<br>';

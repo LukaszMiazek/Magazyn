@@ -104,34 +104,34 @@ if (isset ($_POST['skla']) )
 
 if (!isset ($_POST['konkom']) )
 {
-	if (isset ($_GET['stan']) && $_GET['stan']=='n')
+	if (isset ($_POST['numzam']) )
+	{
+		$zamis = R::findOne('zamowienie',' kosz = ? ', [$_POST['numzam']] );
+	}
+	
+	if( isset ($_POST['numzam']) && $zamis['status'] == 3 )
+	{
+		echo '<div class="info">';
+		echo 'To zamówienie jest już skompletowane';
+		echo '<a href="kompletacja.php?stan=n"> Powrót </a>';
+		echo '</div>';
+	}
+	else if (isset ($_GET['stan']) && $_GET['stan']=='n')
 	{
 		echo '<br>';
 		echo '<div class="info">';
-		echo '<a href="kompletacja.php"> Rozpocznij kompletacje </a>';
-		?>
+		?>	
 		<form action="kompletacja.php" method="post">
-		Numer zamówienia:
+		Numer kosza:
 			<input type="number" name="numzam" required>
-			<input type="submit" value="Dokończ kompletacje">
+			<input type="submit" value="Kompletacja">
 		</form>
 		<?php
 		echo '</div>';
 	}
-	else if (isset ($_POST['numzam']) )
+	else if ( !empty($zamis) )
 	{
-		$zamis = R::findOne('zamowienie', $_POST['numzam'] );
-		
-		if (empty($zamis)) 
-		{
-			echo '<div class="info">';
-			echo 'Nie znaleziono takiego numeru zamówienia';
-			echo '<a href="kompletacja.php?stan=n"> Powrót </a>';
-			echo '</div>';
-		}
-		else
-		{
-			$skl = R::find('sklad', ' id_zam = ? and status = 1 or status  = 3', [$zamis['id']] );
+			$skl = R::find('sklad', ' id_zam = ? and status = 1', [$zamis['id']] );
 			
 			if (empty($skl))
 			{
@@ -230,38 +230,17 @@ if (!isset ($_POST['konkom']) )
 							}
 						}
 				}
-			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			}	
+		?>
+		<br>
+		<br>
+		<div class="button_container2">
+		<form action="kompletacja.php?stan=n" method="post">
+			<input type="hidden" name="cankom" value="<?php echo $zamis['id']; ?>" required>
+			<input type="submit" value="Anuluj kompetacje">
+		</form>
+		</div>
+		<?php
 	}
 	else 
 	{
@@ -274,11 +253,18 @@ if (!isset ($_POST['konkom']) )
 		if (empty($zamis)) 
 		{
 			echo'<div class="info">';
-			echo 'Nie masz żadnych zamówień do kompletacji';
+			echo 'Nie ma żadnych zamówień do kompletacji';
 			echo'</div>';
 		}
 		else
 		{
+			if( is_null($zamis['kosz']) )
+			{
+				$now = R::load( 'zamowienie', $zamis['id'] );
+				$now->kosz = $_POST['numzam'];
+				R::store( $now ); 
+			}
+			
 			$skl = R::find('sklad', ' id_zam = ? and status = 1', [$zamis['id']] );
 			
 			if (empty($skl))
@@ -350,7 +336,7 @@ if (!isset ($_POST['konkom']) )
 					</div>
 					
 					<?php
-					break;// tylko jeden narazie
+					break;
 					}
 				}
 				
@@ -362,8 +348,8 @@ if (!isset ($_POST['konkom']) )
 		<div class="button_container2">
 		<form action="kompletacja.php?stan=n" method="post">
 			<input type="hidden" name="cankom" value="<?php echo $zamis['id']; ?>" required>
-				<input type="submit" value="Anuluj kompetacje">
-			</form>
+			<input type="submit" value="Anuluj kompetacje">
+		</form>
 		</div>
 		<?php
 	}
@@ -376,11 +362,8 @@ else
 	if($r->status == 4)
 	{
 		echo 'To zamówienie jest niekompletne <br>';
-		echo 'Oznacz je numerem: ';
-		echo $r->id;
-		echo '<br> i następnie odłuż na wyznaczone miejsce';
+		echo 'Odłuż na wyznaczone miejsce';
 	}
-	echo '<a href="kompletacja.php"> Następna kompletacja </a>';
 	echo '<a href="kompletacja.php?stan=n"> Powrót </a>';
 	echo '</div>';	
 }

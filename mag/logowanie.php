@@ -49,11 +49,12 @@ mysqli_query($conn, "SET collation_connection = utf8_polish_ci");
 			header ('location:kompletacja.php?stan=n');
 			exit;
 		}
-		else
+		else if ($row['STANOWISKO'] == 'Pakowacz')
 		{
-		header ('location:1.php');
-		exit;
+			header ('location:wysylka.php');
+			exit;
 		}
+
 		
 	}
 	else header ('location:index.php?fail=1');

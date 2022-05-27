@@ -212,7 +212,7 @@ else
 			<br>Box
 			<input type="text" maxlength="1" name="box" id="b" required>
 			<br>Kod Produktu
-			<input type="text" name="idp" required>
+			<input type="text" name="idp" id="k" required>
 			<br>
 	<?php 
 	} 
@@ -228,7 +228,7 @@ else
 			<br>Box
 			<input type="text" maxlength="1" name="box" value = <?php echo $_POST['box'] ?> id="b" required>
 			<br>Kod Produktu
-			<input type="text" name="idp" value= <?php echo $_POST['idp'] ?> required>
+			<input type="text" name="idp" value= <?php echo $_POST['idp'] ?> id="k" required>
 			<br>
 	
 	<?php
@@ -282,11 +282,12 @@ if(isset($_POST['skod']))
 		?>
 		<script>
 
-		function wpisz (s,a,p,b){
+		function wpisz (s,a,p,b,k){
 		document.getElementById('s').value = s;
 		document.getElementById('a').value = a;
 		document.getElementById('p').value = p;
 		document.getElementById('b').value = b;
+		document.getElementById('k').value = k;
 		}
 
 		</script>
@@ -337,7 +338,7 @@ if(isset($_POST['skod']))
 				$idm=$mag->id;
 				echo '</td>';
 				echo '<td>';
-				?><button type="button" onClick="wpisz('<?php echo $mag->sektor ?>',<?php echo $mag->alejka ?>,<?php echo $mag->polka ?>,'<?php echo $mag->box ?>')">Wpisz</button><?php
+				?><button type="button" onClick="wpisz('<?php echo $mag->sektor ?>',<?php echo $mag->alejka ?>,<?php echo $mag->polka ?>,'<?php echo $mag->box ?>','<?php echo $towar['kod'] ?>')">Wpisz</button><?php
 				echo '</td>';
 				echo '</tr>';
 		}

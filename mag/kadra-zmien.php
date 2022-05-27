@@ -30,6 +30,7 @@ if (isset ($_POST['upr']))
 	if ($_POST['upr']==1) $result = mysqli_query($conn, "UPDATE `pracownik` SET `STANOWISKO` = 'Magazynier' WHERE `ID_PRACOWNIKA` = ".$idu);
 	else if ($_POST['upr']==2) $result = mysqli_query($conn, "UPDATE `pracownik` SET `STANOWISKO` = 'KSIEGOWY' WHERE `ID_PRACOWNIKA` = ".$idu);
 	else if ($_POST['upr']==3) $result = mysqli_query($conn, "UPDATE `pracownik` SET `STANOWISKO` = 'Kompleter' WHERE `ID_PRACOWNIKA` = ".$idu);
+	else if ($_POST['upr']==4) $result = mysqli_query($conn, "UPDATE `pracownik` SET `STANOWISKO` = 'Pakowacz' WHERE `ID_PRACOWNIKA` = ".$idu);
 }
 
 if (isset ($_POST['blok']))
