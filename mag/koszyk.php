@@ -28,7 +28,7 @@
 
 						<input type="hidden" name="wlog"	required>
 						<div class="wyloguj">
-							<button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Wyloguj </button>
+						
 						</div>
 					</form>
 			
@@ -89,13 +89,16 @@ if (isset ($_POST['zid']))
 $zamis = R::findOne('zamowienie', 'id_klienta = ? AND status = 0', [$_SESSION['id']]);
 
 //echo $zamis->id;
-echo '<div class="panel">';
+
 if (empty($zamis)) 
 {
-	echo '<h1>Koszyk jest pusty</h1>	';
+	echo '<div class="panel">';
+	echo '<h1>Koszyk jest pusty</h1>';
+	echo '</div>';
 }
 else
 {
+	echo '<div class="panel">';
 	echo '<h1>Zawartość koszyka </h1>';
 	echo '<br>';
 	$tw = R::find('sklad', ' id_zam = ?', [$zamis->id] );
@@ -104,150 +107,148 @@ else
 		//echo $towar->towar;
 		
 		echo '<div class="towar">';
-		$t = R::findOne( 'towar', 'id=?', [$towar->towar] );
+			$t = R::findOne( 'towar', 'id=?', [$towar->towar] );
 			
-		echo '<img src = "Zdjecia/';
-		echo $t->id; 
-		echo '.png " width="50" height="50" alt=" " ></a>';
+			echo '<img src = "Zdjecia/';
+			echo $t->id; 
+			echo '.png " width="50" height="50" alt=" " ></a>';
 
-		echo'<h2>';
-		echo $t['nazwa'];
-		echo'</h2>';
-		echo'<h3>';
-		echo $towar->ilosc;
-		echo'</h3>';
-		echo'<h3>';
-		echo $t['cena'];
-		echo ' zł';
-		echo'</h3>';
-		
-		
-		?>
-		<form action="" method="post">
-		<input type="hidden" name="zid" value="<?php echo $zamis->id?>"required>
-		<input type="hidden" name="tid" value="<?php echo $towar->towar?>"required>
-		<button type="submit" class="fa-solid fa-xmark">
-		</form>
-		<?php
-		
-		
-		$suma=$suma+$t['cena']*$towar->ilosc;
+			echo'<h2>';
+			echo $t['nazwa'];
+			echo'</h2>';
+			echo'<h3>';
+			echo $towar->ilosc;
+			echo'</h3>';
+			echo'<h3>';
+			echo $t['cena'];
+			echo ' zł';
+			echo'</h3>';
+			
+			
+			?>
+			<form action="" method="post">
+			<input type="hidden" name="zid" value="<?php echo $zamis->id?>"required>
+			<input type="hidden" name="tid" value="<?php echo $towar->towar?>"required>
+			<button type="submit" class="fa-solid fa-xmark">
+			</form>
+			<?php
+			
+			
+			$suma=$suma+$t['cena']*$towar->ilosc;
 		echo'</div>';
 	}
-	echo '<br>';
-	echo '<div class="suma">';
-	echo '<div class="suma_suma">';
-	echo '<h2>Suma </h2>';
-	echo number_format($suma, 2);
-	echo ' zł';
-	echo '</div>';
+	
+		echo '<div class="suma">';
+		echo '<div class="suma_suma">';
+		echo '<h2>Suma </h2>';
+		echo number_format($suma, 2);
+		echo ' zł';
+		echo '</div>';
+		echo '</div>';
+echo '</div>';
 	
 	?>
+		<div class="adresacja">
 		<form action="" method="post">
-		<br>Miejscowość
+		<label>Miejscowość</label>
 		<input type="text" name="mie" required>
-		<br>Kod Pocztowy
+		<label>Kod Pocztowy</label>
 		<input type="text" name="kod" required>
-		<br>Ulica
+		<label>Ulica</label>
 		<input type="text" name="ul" required>
-		<br>Numer domu
+		<label>Numer domu</label>
 		<input type="text" name="nr" required>
-		<br><br>
 		<input type="hidden" name="zloz" value="<?php echo $zamis->id; ?>" required>
-		<input type="submit" value="Złóż zamówienie">
+		<div class="adresacja_button">
+			<input type="submit" value="Złóż zamówienie">
+		</div>
 		</form>
-</div>
 </div>
 	<?php
 }
-
-echo '<br>';
-echo '<br>';
-
 	
-echo '<div class="podsumowanie">';
+			echo '<div class="podsumowanie">';
 
-$zaakt= R::findAll('zamowienie', 'id_klienta = ? AND status != 0', [$_SESSION['id']]);
-//echo $zamis->id;
-if (empty($zaakt)) 
-{
-	echo 'Nie masz żadnych aktywnych zamówień';
-}
-else
-{
-	echo '<h1>Historia zamówień</h1>';
-	
-	foreach ($zaakt as $zam)
-	{
-		echo '<div class="historia">';
-		echo '<h3>';
-		echo 'Zamówienie numer: ';
-		echo $zam->id;
-		echo '</h3>';
-		echo 'Data złożenia zamówienia: ';
-		echo $zam->data;
-		echo '<br>';
-		echo 'Miejscowość: ';
-		echo $zam->miejscowosc;
-		echo ' (';
-		echo $zam->kod_pocztowy;
-		echo ')';
-		echo '<br>';
-		echo 'Addes: ';
-		echo $zam->ulica;
-		echo ' ';
-		echo $zam->numer_domu;
-		echo '<br>';
-		echo 'Status zamówienia: ';
-		
-		switch ($zam->status) {
+			$zaakt= R::findAll('zamowienie', 'id_klienta = ? AND status != 0', [$_SESSION['id']]);
+			//echo $zamis->id;
+			if (empty($zaakt)) 
+			{
+				echo '<h1>Nie masz żadnych aktywnych zamówień</h1>';
+			}
+			else
+			{
+				echo '<h1>Historia zamówień</h1>';
+				
+				foreach ($zaakt as $zam)
+				{
+					echo '<div class="historia">';
+					echo '<h3>';
+					echo 'Zamówienie numer: ';
+					echo $zam->id;
+					echo '</h3>';
+					echo 'Data złożenia zamówienia: ';
+					echo $zam->data;
+					echo '<br>';
+					echo 'Miejscowość: ';
+					echo $zam->miejscowosc;
+					echo ' (';
+					echo $zam->kod_pocztowy;
+					echo ')';
+					echo '<br>';
+					echo 'Addes: ';
+					echo $zam->ulica;
+					echo ' ';
+					echo $zam->numer_domu;
+					echo '<br>';
+					echo 'Status zamówienia: ';
+					
+					switch ($zam->status) {
 
-    case 1:
-        echo "Przyjęte";
-        break;
-    case 2:
-        echo "W trakcie realizacji";
-	case 3:
-        echo "Skompletowane";
-	case 4:
-        echo "W trakcie realizacji";
-	case 5:
-        echo "Wysłane";
-}
-	echo '<br>';
-	echo '<br>';
-		
-		//echo $zam->status;
-		
-		echo 'Skład zamówienia: ';
-		echo '<br>';
-		
-		$zam = R::find('sklad', ' id_zam = ?', [$zam->id] );
-		$suma=0;
-		foreach ($zam as $towar){
-			
-			$t = R::findOne( 'towar', 'id=?', [$towar->towar] );
+				case 1:
+					echo "Przyjęte";
+					break;
+				case 2:
+					echo "W trakcie realizacji";
+				case 3:
+					echo "Skompletowane";
+				case 4:
+					echo "W trakcie realizacji";
+				case 5:
+					echo "Wysłane";
+			}
 
-			echo $towar->ilosc;
-			echo 'x ';
-			echo $t['nazwa'];
-			echo ' ';
-			echo $t['cena'];
-			echo '<br>';
-			
-			$suma=$suma+$t['cena']*$towar->ilosc;
-		}
-		
-		echo '<br>';
-		echo '<h3>';
-		echo 'Suma: ';
-		echo number_format($suma, 2);
-		echo ' zł';
-		echo '</h3>';
-		echo '<br>';
-		echo '</div>';
-	}
-}
+					
+					//echo $zam->status;
+					
+					echo 'Skład zamówienia: ';
+					echo '<br>';
+					
+					$zam = R::find('sklad', ' id_zam = ?', [$zam->id] );
+					$suma=0;
+					foreach ($zam as $towar){
+						
+						$t = R::findOne( 'towar', 'id=?', [$towar->towar] );
+
+						echo $towar->ilosc;
+						echo 'x ';
+						echo $t['nazwa'];
+						echo ' ';
+						echo $t['cena'];
+						echo '<br>';
+						
+						$suma=$suma+$t['cena']*$towar->ilosc;
+					}
+					
+					echo '<br>';
+					echo '<h3>';
+					echo 'Suma: ';
+					echo number_format($suma, 2);
+					echo ' zł';
+					echo '</h3>';
+					echo '<br>';
+					echo '</div>';
+				}
+			}
 	echo '</div>';
 
 ?>
