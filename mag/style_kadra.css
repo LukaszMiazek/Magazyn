@@ -1,165 +1,165 @@
-*{
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 600;
-    font-size: medium;
-    margin: 0;
-    padding: 0;
-}
+    *{
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-size: medium;
+        margin: 0;
+        padding: 0;
+    }
 
-body{
-    background: #f2f2f2;
-}
+    body{
+        background: #f2f2f2;
+    }
 
-.container{
-    display: grid;
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    grid-gap: 6px;
-    grid-template-columns: 1fr auto auto 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: 
-            "nav nav nav nav"
-            ". dodawanie panel ."
-            ". dodawanie panel .";        
-}
+    .container{
+        display: grid;
+        width: 100vw;
+        min-height: 100vh;
+        margin: 0;
+        grid-gap: 6px;
+        grid-template-columns: 1fr auto auto 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: 
+                "nav nav nav nav"
+                ". dodawanie panel ."
+                ". dodawanie panel .";        
+    }
 
-.nav{ 
-    grid-area: nav;
-    background: white;
-    color: black;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(4, auto) 1fr;
-    grid-template-areas: 
-        "logo . . nav_panel"
-}
+    .nav{ 
+        grid-area: nav;
+        background: white;
+        color: black;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: repeat(4, auto) 1fr;
+        grid-template-areas: 
+            "logo . . nav_panel"
+    }
 
-.logo{
-    grid-area: logo;
-    align-items: center;
-    margin-left: 4vh;
-    display: flex;
-    float: left;
-    text-align: left;
-    width: 100%;
-    color: black;
-}
+    .logo{
+        grid-area: logo;
+        align-items: center;
+        margin-left: 4vh;
+        display: flex;
+        float: left;
+        text-align: left;
+        width: 100%;
+        color: black;
+    }
 
-.logo i{
-    font-size: xx-large;
-    font-weight: bolder;
-    color: #52BCFF;
-}
+    .logo i{
+        font-size: xx-large;
+        font-weight: bolder;
+        color: #52BCFF;
+    }
 
-.logo h2{
-    font-size: x-large;
-    margin-left: 1vh;
-    font-weight: bold;
-    border-bottom: 2px solid #52BCFF;
-}
+    .logo h2{
+        font-size: x-large;
+        margin-left: 1vh;
+        font-weight: bold;
+        border-bottom: 2px solid #52BCFF;
+    }
 
-.nav_panel{
-    grid-area: nav_panel;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    float: right;
-    text-align: left;
-    width: 100%;
-}
+    .nav_panel{
+        grid-area: nav_panel;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        float: right;
+        text-align: left;
+        width: 100%;
+    }
 
-.nav_panel button{
-    width: 100%;
-    border:0.15em solid white;
-    outline: none;
-    justify-content: center;
-    cursor: pointer; 
-    -webkit-appearance: none;
-    font-weight: bold;
-    font-size: larger;
-    text-align: center;
-    border-radius: 0.5rem;
-    background-color: white;
-    color: black;
-    text-decoration: none;
-    margin: 1vh;
-}   
+    .nav_panel button{
+        width: 100%;
+        border:0.15em solid white;
+        outline: none;
+        justify-content: center;
+        cursor: pointer; 
+        -webkit-appearance: none;
+        font-weight: bold;
+        font-size: larger;
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        margin: 1vh;
+    }   
 
-.dodawanie{ 
-    grid-area: dodawanie;
-    background: white;
-    padding: 1vh;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.dodawanie input{
-    width: 90%;
-    padding: 1vh;
-    border:0.15em solid #FFFFFF;
-    outline: none;
-    justify-content: center;
-    cursor: pointer; 
-    -webkit-appearance: none;
-    font-weight: 600;
-    font-size: medium;
-    border-radius: 3rem;
-    background-color: #F8F8F8;
-}
-
-
-.panel{
-        grid-area: panel;
+    .dodawanie{ 
+        grid-area: dodawanie;
         background: white;
         padding: 1vh;
-        border-radius: 1rem;    
-}
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+    }
 
-table 
-{ 
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
-    max-height: 400px;
-}
+    .dodawanie input{
+        width: 90%;
+        padding: 1vh;
+        border:0.1em solid #52BCFF;
+        outline: none;
+        justify-content: center;
+        cursor: pointer; 
+        -webkit-appearance: none;
+        font-weight: 600;
+        font-size: medium;
+        border-radius: 3rem;
+        background-color: #F8F8F8;
+    }
 
-table, td, th {
-    border: 1px solid #f2f2f2;
-}
+
+    .panel{
+            grid-area: panel;
+            background: white;
+            padding: 1vh;
+            border-radius: 1rem;    
+    }
+
+    table 
+    { 
+        table-layout: fixed;
+        border-collapse: collapse;
+        border-radius: 1em;
+        overflow: hidden;
+        max-height: 400px;
+    }
+
+    table, td, th {
+        border: 1px solid #f2f2f2;
+    }
 
 
-table i
-{
-    width: 100%;
-    outline: none;
-    justify-content: center;
-    cursor: pointer; 
-    font-weight: bold;
-    font-size: larger;
-    text-align: center;
-    color: black;
-}
+    table i
+    {
+        width: 100%;
+        outline: none;
+        justify-content: center;
+        cursor: pointer; 
+        font-weight: bold;
+        font-size: larger;
+        text-align: center;
+        color: black;
+    }
 
-td{
-    padding: 1rem;
-    text-align: center; 
-    align-items: center;
-}
+    td{
+        padding: 1rem;
+        text-align: center; 
+        align-items: center;
+    }
 
-tr:nth-child(1)
-{
-    background-color: #52bcff;
-    color: white;
-    font-size: large;
-    font-weight: lighter;
-    border-radius: 1rem;
-}
+    tr:nth-child(1)
+    {
+        background-color: #52bcff;
+        color: white;
+        font-size: large;
+        font-weight: lighter;
+        border-radius: 1rem;
+    }
 
-tr:nth-child(1) b
-{
-    font-size: large;
-    font-weight: lighter;
-}
+    tr:nth-child(1) b
+    {
+        font-size: large;
+        font-weight: lighter;
+    }
