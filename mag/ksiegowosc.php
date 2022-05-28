@@ -3,37 +3,39 @@
 <head>
 	<meta charset="utf-8">
 	<title>Ksiegowosc</title>
+	<link rel="stylesheet" type="text/css" href="style_ksiegowosc.css">
 	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel="stylesheet" type="text/css" href="style2.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"/> 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 			<div class="div3">
-				<div class="pasek_nav">
-				<?php
-				session_start();
-				require 'rb-mysql.php';
-				R::setup( 'mysql:host=localhost;dbname=magazyn','root', '' );
-
-				echo 'Zalogowno jako '.$_SESSION['login'];
-				echo '<br>';
-				?>
-				<form action="index.php" method="post">
-
-					<input type="hidden" name="wlog"	required>
-					<button type="submit">Wyloguj się</button>
-
-				</form>
+				<div class="logo">
+					<i class="fa-solid fa-coins"></i>
+					<h2>magazyn/księgowość</h2>
 				</div>
+
+					<?php
+					session_start();
+					require 'rb-mysql.php';
+					R::setup( 'mysql:host=localhost;dbname=magazyn','root', '' );
+					echo  '<div class="nav_panel">';
+						echo 'Zalogowno jako '.$_SESSION['login'];
+						?>
+						<form action="index.php" method="post">
+
+							<input type="hidden" name="wlog"	required>
+							<button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Wyloguj </button>
+						</form>
+					</div>
 			</div>
 
 			<div class="div2">
-				<label>Kategorie</label>
 				<div class="scrolling">
+					<label>Kategorie</label>
 				<?php
 				
 				echo '<table>';
@@ -73,21 +75,13 @@
 							<button type="submit" value="dodaj">Edytuj</button>
 						</div>
 					</div>
-				</div>
-			</form>
+				</form>
 				<form action="" method="post">
-				<div class="container_kategoria2">	
-				<input type="hidden" name="iddk" value=<?php echo $_POST['editk'] ?> required>
-					<div class="kategoria4-3">
-						<div class="button_align">
-							<button type="submit" class="fa-solid fa-trash-can" value="Usuń"></button>
-						</div>
+					<div class="container_kategoria2">	
+						<input type="hidden" name="iddk" value=<?php echo $_POST['editk'] ?> required>
+								<button type="submit" class="fa-solid fa-trash-can" value="Usuń"></button>
+								<a class="guzik" href="">Anuluj</a>
 					</div>
-					<div class="kategoria5-3">
-						<div class="button_align">
-					<a class="guzik" href="">Anuluj</a>
-				</div>
-				</div>
 				</div>
 					</form>
 			<?php
@@ -427,22 +421,24 @@
 		</div>
 
 			<input type="hidden" name="ide" value=<?php echo $id ?> required>
+
 			<div class="button_align0">
-				<button type="submit" class="fa-solid fa-check" value="Edytuj"></button>
-			</div>
+					<button type="submit" class="fa-solid fa-check" value="Edytuj"></button>
+					</div>
+
 	
 	</form>
-		<div class="group1">
-			<form action="" method="post">
-				<input type="hidden" name="idd" value=<?php echo $id ?> required>
-				<div class="button_align1">
-				<button type="submit" class="fa-solid fa-trash-can" value="Usuń"></button>
-				</div>
-				<div class="button_align2">
-				<a class="fa-solid fa-xmark" href=""></a>
-				</div>
-			</form>
+		<div class="div4buttons">
+				<form action="" method="post">
+					<input type="hidden" name="idd" value=<?php echo $id ?> required>
+					<div class="button_align1">
+						<button type="submit" class="fa-solid fa-trash-can" value="Usuń"></button>
+					</div>
+					<div class="button_align2">
+						<a class="fa-solid fa-xmark" href=""></a>
+					</div>
 		</div>
+				</form>
 </div>
 
 <div class="div5">
