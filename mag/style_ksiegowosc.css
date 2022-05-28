@@ -1,7 +1,9 @@
 *{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
-    font-size: medium   ;
+    font-size: medium;
+    margin: 0;
+    padding: 0;
 }
 
 body{
@@ -85,15 +87,19 @@ tr:nth-of-type(even) button
 }
 
 .div2 .scrolling{
+    grid-area: table;
     overflow:hidden;
     overflow-y: scroll;
-    height: 10vh;
+    min-height: 5vh;
+    max-height: 50vh;
 }
 
 .div5 .scrolling{
+    grid-area: table;
     overflow:hidden;
     overflow-y: scroll;
-    height: 20vw;
+    min-height: min-content;
+    max-height: 40vh;
 }
 
 .table th
@@ -105,8 +111,12 @@ tr:nth-of-type(even) button
 
 .container{
     display: grid;
+    width: 100vw;
+        min-height: 100vh;
+        margin: 0;
+        grid-gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.1fr 0.2fr 0.2fr 0.3 0.2fr;
+    grid-template-rows: repeat(4, auto) 1fr;
     grid-template-areas: 
     "nav nav nav nav"
     "tabela tabela tag tag"
@@ -120,43 +130,94 @@ tr:nth-of-type(even) button
         background: #E1E1E1;
         box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
         padding-top: 1vh;
-        margin: 1vh;
+        
     }
     .div2 { 
         grid-area: kat_edit;
         background: #E1E1E1;
         box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
         padding:1vh;
-        margin: 1vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 
+            "table container_kategoria"
     }
+
     .div3 { 
         grid-area: nav;
-        background: #E1E1E1;
-        box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
-        padding: 1vh;
-        margin: 1vh;
-
+        background: #e1e1e1;
+        color: black;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: repeat(4, auto) 1fr;
+        grid-template-areas: 
+            "logo . . nav_panel"
     }
+
     .div4 {
         grid-area: add_items;
         background: #E1E1E1;
         box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
         padding-top: 1vh;
-        margin: 1vh;
+    
     }
     .div5{
         grid-area: content4;
-        background: #E1E1E1;
         box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
         padding-top: 1vh;
-        margin: 1vh;
+    
+        background: #E1E1E1;s
     }
+
+    .div5 table 
+    { 
+        table-layout: fixed;
+        border-collapse: collapse;
+        overflow: hidden;
+        max-height: 400px;
+    }
+
+    .div5 table, td, th {
+        border: 1px solid #f2f2f2;
+    }
+
+
+    .div5 table i
+    {
+        font-size: small;
+        width: 100%;
+        outline: none;
+        justify-content: center;
+        cursor: pointer; 
+        font-weight: bold;
+        font-size: normal;
+        text-align: center;
+        color: black;
+    }
+
+    .div5 td{
+        padding: 0.15rem;
+        text-align: center; 
+        align-items: center;
+    }
+
+    .div5 thead tr
+    {
+        background-color: #FF6E2D;
+        color: white;
+        font-size: smaller;
+        font-weight: lighter;
+        border-radius: 1rem;
+        text-align: center;
+    }
+
     .tag{
         grid-area: tag;
         background: #E1E1E1;
         box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
         padding: 1vh;
-        margin: 1vh;
+    
         display: flex;  
         justify-content: center;
         align-items: center;
@@ -168,7 +229,7 @@ tr:nth-of-type(even) button
         background: #E1E1E1;
         box-shadow: 2px 2px 2px 2px rgb(204, 204, 204);
         padding: 1vh;
-        margin: 1vh;
+
     }
 
     @media only screen and (max-width: 768px)
@@ -210,7 +271,7 @@ tr:nth-of-type(even) button
 }
 
 .wyszukiwarka .formHolder .col_big input:focus{
-    border-color:#007aff;
+    border-color:#FF6E2D;
 }
 .wyszukiwarka .formHolder .col{
     align-items: center;
@@ -231,10 +292,11 @@ tr:nth-of-type(even) button
     justify-content: center;
     cursor: pointer; 
     border-radius: 0.5vh;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .wyszukiwarka .formHolder .col button:hover{
-    border-color:#007aff;
+    border-color:#FF6E2D;
 }
 
 .div4 form input{
@@ -250,7 +312,7 @@ tr:nth-of-type(even) button
 
 
 .div4 form input:focus{
-    outline: 2px solid #007aff;
+    outline: 2px solid #FF6E2D;
 }
 
 .div4 form select{
@@ -270,87 +332,35 @@ tr:nth-of-type(even) button
     padding-left: 0.75rem;
 }
 
-.div4 form button{
-    display:inline-block;
-    padding:1vh;
-    margin: auto;  
-    border:0.15em solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
-    width: 80%;
-    justify-content: center;
-    cursor: pointer; 
-    border-radius: 0.5vh;
-    transition: 0.2s;
-}
 
-.div4 form button:hover{
-    border-color:#007aff;
-}
-
-.div4 form .button_align0 button:hover{
-    background-color: #77DD76;
-    border:0.15em solid #77DD76;
-}
-
-.div4 form .button_align0{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.2rem;
-}
-
-.div4 form .button_align0 button{
-    display:inline-block;
-    padding:1vh;
-    margin: auto;  
-    border:0.15em solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
-    width: 80%;
-    justify-content: center;
-    cursor: pointer; 
-    border-radius: 0.5vh;
-    transition: 0.5s;
-}
-
-.guzik{
-    display:inline-block;
-    padding:1vh;
-    margin: auto;  
-    border: 2px solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
-    width: 80%;
-    justify-content: center;
-    cursor: pointer; 
-    text-decoration: none;
-    font-size: medium;
-    border-radius: 0.5vh;
-}
-
-.guzik:hover{
-    border-color:#007aff;
-}
-
-.div5 dt{
-    width: 2vh;
-}
-
-.div5 .container_input{
+.container_input{
     display: flex;
     flex-direction: row;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+}
+
+.container_input button{
+    width: 100%;
+    border:0.15em solid white;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    margin-left: 00.3em;
+
 }
 
 .div5 .container_input input{
     display: block;
-    width: 20%;
+    width: 15%;
 }
 
 .div4 .button_align{
@@ -383,131 +393,151 @@ tr:nth-of-type(even) button
 
 
 .div2 form{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    text-align: center;
+    grid-area: container_kategoria;
+    display: block;
+    width: 100%;  
 }
 
 .div2 .container_kategoria{
-    justify-content: center;
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    text-align: center;
-    align-items: center;
+    padding: 0.75rem;
 }      
 
-
-.div2 .container_kategoria .kategoria1-3{
-    
-    width: 10%;
-}
-
-.div2 .container_kategoria .kategoria2-3{
-    
-    width: 30%;
-}
-.div2 .container_kategoria .kategoria3-3{       
-   
-    width: 20%;
-}
 .div2 .container_kategoria2{
-    justify-content: center;
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin: 0.5vh;         
+    display: block;
+
+    width: 100%;         
 }
 
-.div2 .container_kategoria2 .kategoria4-3{       
-    width: 41%;
-    align-items: center;
-    justify-content: center;
-    display: block;
-    float: left;
-}
-
-.div2 .container_kategoria2 .kategoria5-3 {
-    width: 25%;
-    align-items: center;
-    justify-content: center;
-    display: block;
-    float: left;
-}
 
 
 .div2 .container_kategoria input{
-    width: 80%;
+    width: 100%;
     padding: 1vh;
-    border:0.15em solid #FFFFFF;
+    padding-left: 1vh;
+    border: #333 2px;
     border-radius: 0.5vh;
     outline: none;
+    box-sizing: border-box;
+    border: 0.15em solid #FFFFFF;
 }
 
+.div2 .container_kategoria input:focus{
+    outline: 2px solid #FF6E2D;
+}
+
+
 .div2 .container_kategoria button{
-    padding: 1vh;
-    margin: auto;  
-    border:0.15em solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
     width: 100%;
+    padding: 1vh;
+    border: 0.15em solid white;
+    outline: none;
     justify-content: center;
-    cursor: pointer; 
-    border-radius: 0.5vh;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    margin-top: 1vh;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .div2 .container_kategoria2 button{
+    width: 100%;
     padding: 1vh;
-    margin: auto;  
-    border:0.15em solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
-    width: 50%;
+    border: 0.15em solid white;
+    outline: none;
     justify-content: center;
-    cursor: pointer; 
-    border-radius: 0.5vh;
-}
-
-
-.div2 .container_kategoria button:hover{
-    border-color:#007aff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    margin-top: 1vh;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .div2 .container_kategoria2 button:hover{
-    border-color:#007aff;
+    border: 0.15em solid #FF6E2D;
 }
 
-.div3 .pasek_nav{
-    display: flex;  
-    flex-wrap: wrap;
-    box-sizing: border-box;
+.div2 .button_align button:hover{
+    border: 0.15em solid #FF6E2D;
 }
 
-
-.div3 .pasek_nav button{
+.div2 a{
+    width: auto;
     padding: 1vh;
-    margin: auto;  
-    border:0.15em solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
-    width: 100%;
+    border: 0.15em solid white;
+    outline: none;
     justify-content: center;
-    cursor: pointer; 
-    border-radius: 0.5vh;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin-top: 0.5em;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+
 }
 
-.div3 .pasek_nav button:hover{
-    border-color:#007aff;
+.div2 a:hover{
+    border: 0.15em solid #FF6E2D;
 }
+
+.logo{
+     grid-area: logo;
+     align-items: center;
+     margin-left: 4vh;
+     display: flex;
+     float: left;
+     text-align: left;
+     width: 100%;
+     color: black;
+}
+
+.logo i{
+     font-size: xx-large;
+     font-weight: bolder;
+    color: #FF6E2D;
+}
+
+.logo h2{
+    font-size: x-large;
+    margin-left: 1vh;
+    font-weight: bold;
+    border-bottom: 2px solid #FF6E2D;
+}
+
+.nav_panel{
+        grid-area: nav_panel;
+        align-items: center;
+        justify-content: center;
+    display: flex;
+    float: right;
+     text-align: left;
+     width: 100%;
+}
+
+    .nav_panel button{
+        width: 100%;
+        border:0.15em solid white;
+        outline: none;
+        justify-content: center;
+        cursor: pointer; 
+        -webkit-appearance: none;
+        font-weight: bold;
+        font-size: larger;
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        margin: 1vh;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    }   
 
 .tag .guzik2{
     display:inline-block;
@@ -523,10 +553,11 @@ tr:nth-of-type(even) button
     text-decoration: none;
     font-size: medium;
     border-radius: 3rem;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .active{
-    border-color:#007aff;
+    border-color:#FF6E2D;
 }
 
 .div1 .button_sort_sec{
@@ -548,67 +579,86 @@ tr:nth-of-type(even) button
     cursor: pointer; 
     border-radius: 0.5vh;
     font-size: large;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
-.div4 .group1{
+.div4 .div4buttons{
+    padding-left: 1vh;
+    padding-right: 1vh;
+    padding-bottom: 1vh;
+    border-radius: 1rem;
     display: block;
-    align-items: center;
-    width: 80%;
-    white-space: nowrap;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
 }
 
-.div4 .group1 button{ 
-    border:0.15em solid #FFFFFF;
-    box-sizing: border-box;
-    display: inline-block;
-    padding:1vh;
-    margin: auto;  
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
+.div4 .button_align0{
+    padding-left: 1vh;
+    padding-right: 1vh;
+    border-radius: 1rem;
+    display: block;
+    justify-content: center;
+}
+
+.div4 button{
     width: 95%;
+    padding: 1vh;
+    border:0.15em solid white;
+    outline: none;
     justify-content: center;
     cursor: pointer; 
-    border-radius: 0.5vh;
-    transition: 0.5s;
+    -webkit-appearance: none;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
-.div4 .group1 button:hover{ 
-    background-color: #FF6962;
-    border:0.15em solid #FF6962;
+.div4 button:hover{
+    border:0.15em solid #FF6E2D;
 }
 
-.div4 .group1 a{
-    display:inline-block;
-    padding:1vh;
-    margin: auto;  
-    border: 2px solid #FFFFFF;
-    box-sizing: border-box;
-    color:#000000;
-    background-color:#FFFFFF;
-    text-align:center;
-    width: 95%;
+.div4 .button_align0 button{
+    width: 100%;
+}
+
+.div4 .div4buttons button{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid white;
+    outline: none;
     justify-content: center;
     cursor: pointer; 
+    -webkit-appearance: none;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
+    margin-top: 00.5em;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    
+}
+
+.div4 .div4buttons button:hover{
+    border:0.15em solid #FF6E2D;
+}
+
+.div4 .div4buttons a{
+    width: auto;
+    padding: 1vh;
+    border:0.15em solid white;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    border-radius: 1rem;
+    background-color: white;
+    color: black;
     text-decoration: none;
-    font-size: medium;
-    border-radius: 0.5vh;
+    text-align: center;
+    display: block;
+    margin-top: 00.5em;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
-.div4 .group1 a:hover{
-    border-color:#007aff;
-}
-
-.div4 .group1 .button_align1{
-    display: flex;
-    float: right;
-    width: 70%;
-}
-
-.div4 .group1 .button_align2{
-    display: flex;
-    float: left;
-    width: 30%;
+.div4 .div4buttons a:hover{
+    border:0.15em solid #FF6E2D;
 }
