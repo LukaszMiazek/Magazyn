@@ -6,24 +6,6 @@
     padding: 0;
 }
 
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: #f2f2f2 #ffffff;
-  }
-
-  *::-webkit-scrollbar {
-    width: 16px;
-  }
-
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    border: 3px solid #ffffff;
-  }
 
 body{
     background: #f2f2f2;
@@ -34,12 +16,12 @@ body{
     width: 100vw;
     min-height: 100vh;
     margin: 0;
-    grid-gap: 6px;
+    grid-gap: 0.8rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(4, auto) 1fr;
     grid-template-areas: 
             "nav nav nav nav"
-            ". panel panel ."
+            ". panel adresacja ."
             ". podsumowanie podsumowanie .";        
 }
 
@@ -106,7 +88,7 @@ body{
 }
 
 .nav_panel i{
-    color: #47a358;
+    color: #ff6b6b;
     font-size: larger;
 }
 
@@ -164,6 +146,62 @@ body{
     font-size: larger;
     margin-right: 1vh;
 }
+
+.adresacja{
+    grid-area: adresacja;
+    color: black;
+    background-color: white;
+    padding: 1vh;
+    border-radius: 1rem;
+    height: min-content;
+}
+
+.adresacja form{
+    display: flex;
+    flex-direction: column;
+}
+
+.adresacja label{
+    text-transform: uppercase;
+    font-weight: lighter;
+    text-align: left;
+    font-size: large;
+    padding: 0.5vh;
+}
+
+.adresacja input{
+    width: 100%;
+    padding: 1vh;
+    padding-left: 1vh;
+    border-radius: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    background-color: white;
+    border: none;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.adresacja .adresacja_button input
+{
+    width: 100%;
+    padding: 1vh;
+    border:0.15em solid #ff6b6b;
+    outline: none;
+    justify-content: center;
+    cursor: pointer; 
+    -webkit-appearance: none;
+    font-weight: normal;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: #ff6b6b;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
 
 .podsumowanie h1{
     font-size: x-large;
@@ -252,6 +290,7 @@ body{
         grid-template-areas: 
                 "nav"
                 "panel"
+                "adresacja"
                 "podsumowanie";
     }
 
