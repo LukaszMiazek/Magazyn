@@ -54,6 +54,12 @@ if (isset ($_POST['wys']) )
 	echo 'Wysłano';
 	echo '<a href="wysylka.php"> Powrót </a>';
 	echo '</div>';
+	
+	$w = R::dispense( 'wysylki' );
+	$w->id_zam = $_POST['wys'];
+	$w->id_prac = $_SESSION['idprac'];
+	$w->data = R::isoDateTime();
+	$id = R::store( $w );
 }
 else if (isset ($_POST['numzam']) )
 {
